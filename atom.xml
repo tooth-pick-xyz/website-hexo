@@ -8,8 +8,30 @@
     <atom:link href="/atom.xml" rel="self" type="application/rss+xml"/>
     
     <description>サークル「プラスチック合金」爪楊枝のサイトです。</description>
-    <pubDate>Sat, 04 Mar 2017 18:52:07 GMT</pubDate>
+    <pubDate>Fri, 10 Mar 2017 12:58:26 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>サイトを移行しました。</title>
+      <link>https://www.tooth-pick.xyz/2017/03/10/migration-wp-to-hexo/</link>
+      <guid>https://www.tooth-pick.xyz/2017/03/10/migration-wp-to-hexo/</guid>
+      <pubDate>Fri, 10 Mar 2017 12:36:45 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;最近dokcerがマイブームです。&lt;/p&gt;
+&lt;p&gt;ということで、twitterではぼちぼち言っていましたが、サイトを自宅サーバからconohaに立てたdocker上に移行しました。&lt;br&gt;サーバを移行したついでに、CMSもWordpressからhexoへ移行しました。&lt;/p
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p>最近dokcerがマイブームです。</p>
+<p>ということで、twitterではぼちぼち言っていましたが、サイトを自宅サーバからconohaに立てたdocker上に移行しました。<br>サーバを移行したついでに、CMSもWordpressからhexoへ移行しました。</p>
+<p>wordpressよのような大きなCMSで表示にあーだこーだ言いながら記事を書くより、markdown言語ですらすらっと書いてサイトを更新できるシステムのほうが楽で良いですね。</p>
+<p>サーバを移行してもIPv6通信でのアクセスも引き続きできます。<br>おまけに今回はLet’s Encryptを使用してhttpsによるHSTSにも対応しました。<br>そこのナウでヤングなお姉さんとお兄さん、時代はSSL通信ですよ。こんなサイトフルhttps化してどーすんじゃって話ですがｗ</p>
+<p>まだちょっと細部のデザインを弄ったりしたり、IPv6 Enabled Programのhttps対応のロゴ変更等残っていますが、とりあえず完了という形で。<br>またdockerとgitなどのサービスを使用て、サイトを移行した記事はまた別途書きたいと思っています。</p>
+]]></content:encoded>
+      
+      <comments>https://www.tooth-pick.xyz/2017/03/10/migration-wp-to-hexo/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>日本カメラ3月号にて紹介していただきました</title>
