@@ -77,9 +77,9 @@ ga('send', 'pageview');
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.tooth-pick.xyz"></form>
@@ -89,6 +89,82 @@ ga('send', 'pageview');
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-easy-cms-system-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/25/easy-cms-system-1/" class="article-date">
+  <time datetime="2017-03-25T04:22:04.000Z" itemprop="datePublished">2017-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/サーバ/">サーバ</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/25/easy-cms-system-1/">dockerとgitlabを使ったお手軽CMS環境構築　その１</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/2017/docker_hexo_gitlab.png" alt=""></p>
+<p>結構前の話ですが、ブログをおうちサーバのWordpressからConohaのVPS上にdockerを使用し、hexoを構築した環境へと移行しました。<br>その過程で色々とdockerの長所的な物を利用したブログ更新環境を構築したのでメモ。</p>
+<p><strong><em>本文を書いていたところかなりの長文になってしまったため、4記事くらいに分割しました。</em></strong></p>
+<h1 id="移行のきっかけ"><a href="#移行のきっかけ" class="headerlink" title="移行のきっかけ"></a>移行のきっかけ</h1><ul>
+<li>Wordpressの脆弱性対応の手間</li>
+<li>Wordpressの記事の書きにくさ</li>
+<li>自宅サーバの老朽化  </li>
+</ul>
+<p>一番大きかった要因が2つめの <strong>記事の書きにくさ</strong> でした。<br>WebUI上で書くのですが、私のPCではブラウザをフル画面表示ではなく、1280*1024程度のサイズにして使用しています。そうするとUIがかなりきつきつで書きにくいのです。<br>UIもきつきつですが、私の場合Wordpressで記事を更新するときは、画像の挿入などで記事編集のテキストモードとビジュアルモードを入ったり来たりしていたため、あまり効率的ではありませんでした。</p>
+<p>また、サーバの老朽化も進んでおり、購入から5年以上経過していました。webサイトをWpからhexoへ移行する際、サーバをVPS上へと移行しました。</p>
+<h1 id="移行時に実現したかったこと"><a href="#移行時に実現したかったこと" class="headerlink" title="移行時に実現したかったこと"></a>移行時に実現したかったこと</h1><ul>
+<li>記事をパソコン一つあれば外出先からでも更新出来る環境</li>
+<li>なるべく記事更新がシンプルにできること</li>
+<li>管理の手間を減らす</li>
+<li>IPv6環境は引き続き対応</li>
+</ul>
+<h1 id="最終目標"><a href="#最終目標" class="headerlink" title="最終目標"></a>最終目標</h1><ol>
+<li>Cloud9上から<code>hexo deploy</code>を実施しただけで、gitlab上へ公開データを転送。</li>
+<li>gitlabがpushを検知し、VPS上へwebhookを投げる</li>
+<li>VPS上のwebhookサーバがwebhookを受信し、webコンテナを再起動。再起動時に最新の公開データをgitlabからclone</li>
+<li><p>最新のweb公開データを持ったコンテナが自動起動</p>
+<p>つまり、ブログの更新ユーザはcloud9上で<code>hexo deploy</code>だけで、常にweb公開データを持ったコンテナが自動再起動される素敵環境を構築します。</p>
+</li>
+</ol>
+<h1 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h1><ul>
+<li>やりたいことは全て実現出来た</li>
+</ul>
+<h3 id="ついでに実現できちゃった事"><a href="#ついでに実現できちゃった事" class="headerlink" title="ついでに実現できちゃった事"></a>ついでに実現できちゃった事</h3><ul>
+<li>HTTPSへの対応。しかもHSTS対応まで出来てしまった。万歳🙌</li>
+<li>HTTP/2（SPDY4）への対応。⚡</li>
+</ul>
+<p>環境の構築については次の記事から記述していきます。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/" data-id="cj0orulpo0016d4o2p6jdob17" class="article-share-link">Share</a>
+      
+        <a href="https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cloud9/">Cloud9</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-buy-chinese-earphone-magaosi-k3pro" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -126,9 +202,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2017/03/21/buy-chinese-earphone-magaosi-k3pro/" data-id="cj0jplu9z00056jo2fj83eap4" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2017/03/21/buy-chinese-earphone-magaosi-k3pro/" data-id="cj0orulow000dd4o2mgb7kwq6" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2017/03/21/buy-chinese-earphone-magaosi-k3pro/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2017/03/21/buy-chinese-earphone-magaosi-k3pro/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/K3/">K3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAGAOSI/">MAGAOSI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中華イヤホン/">中華イヤホン</a></li></ul>
@@ -180,9 +256,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2017/03/14/buy-chinese-earphone-kz-ed9/" data-id="cj0jplu9w00046jo2gxztmo3r" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2017/03/14/buy-chinese-earphone-kz-ed9/" data-id="cj0orulnb0000d4o2513q01oe" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2017/03/14/buy-chinese-earphone-kz-ed9/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2017/03/14/buy-chinese-earphone-kz-ed9/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/KZ-ED9/">KZ ED9</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中華イヤホン/">中華イヤホン</a></li></ul>
@@ -229,9 +305,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2017/03/10/migration-wp-to-hexo/" data-id="cj0jplub7001i6jo2rh1jv432" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2017/03/10/migration-wp-to-hexo/" data-id="cj0orulqu002od4o21nb74l05" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2017/03/10/migration-wp-to-hexo/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2017/03/10/migration-wp-to-hexo/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/サーバ/">サーバ</a></li></ul>
@@ -278,9 +354,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2017/02/22/nichikame_2017_3_introduce/" data-id="cj0jplube001p6jo2w0tmildf" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2017/02/22/nichikame_2017_3_introduce/" data-id="cj0orulqj0025d4o2611cxu5y" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2017/02/22/nichikame_2017_3_introduce/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2017/02/22/nichikame_2017_3_introduce/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -332,9 +408,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2017/01/01/c91_after_and_consign/" data-id="cj0jpluak000s6jo2pl7uw76z" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2017/01/01/c91_after_and_consign/" data-id="cj0orulpj0014d4o2yln4k1rl" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2017/01/01/c91_after_and_consign/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2017/01/01/c91_after_and_consign/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -380,9 +456,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2016/12/30/c91_menu/" data-id="cj0jplual000t6jo2uhdfwinm" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2016/12/30/c91_menu/" data-id="cj0orulpt0019d4o2lvw4usgz" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2016/12/30/c91_menu/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2016/12/30/c91_menu/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -434,9 +510,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2016/12/24/c91_new_publication/" data-id="cj0jpluao000v6jo27bbnpyqj" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2016/12/24/c91_new_publication/" data-id="cj0orulqv002rd4o28bfoe8ez" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2016/12/24/c91_new_publication/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2016/12/24/c91_new_publication/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -480,9 +556,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2016/10/29/c91_participation/" data-id="cj0jpluaq000z6jo2x50d5bog" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2016/10/29/c91_participation/" data-id="cj0orulpw001cd4o214qv0ivs" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2016/10/29/c91_participation/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2016/10/29/c91_participation/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -526,58 +602,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2016/09/07/last_fm_nowplayng_python_app/" data-id="cj0jplub8001k6jo21otionqd" class="article-share-link">Partager</a>
+      <a data-url="https://www.tooth-pick.xyz/2016/09/07/last_fm_nowplayng_python_app/" data-id="cj0orulqg0021d4o2uf40hpqy" class="article-share-link">Share</a>
       
-        <a href="https://www.tooth-pick.xyz/2016/09/07/last_fm_nowplayng_python_app/#disqus_thread" class="article-comment-link">Commentaires</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-c90_after_and_consign" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/15/c90_after_and_consign/" class="article-date">
-  <time datetime="2016-08-15T11:58:10.000Z" itemprop="datePublished">2016-08-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/即売会/">即売会</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/15/c90_after_and_consign/">C90　お疲れ様でした。+委託の話　[2016.09.07追記]</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>C90お疲れ様でした。<br>当日、挨拶や差し入れ等して頂いてありがとうございました。<br>今年のコミケは比較的過ごしやすかった気がします。</p>
-<p>まず委託の件ですが、5部ほど当日残りましたのでCOMIC ZINにて委託販売を行っています。<br>少部数のため、通販かZINの新宿店のみとなっていると思いますので、秋葉原店にて買おうと思っていた方はご注意ください。<br>【2016.09.07追記】9月1日あたりに在庫が復活しています。新宿店では、店員に聞けば出て来ると思います。秋葉原店については確認していません。<br><a href="http://shop.comiczin.jp/products/detail.php?product_id=29315" target="_blank" rel="external">http://shop.comiczin.jp/products/detail.php?product_id=29315</a></p>
-<p>当日、ゆうぱっく受取時に荷物が迷子になり、とても慌てました。<br>”メ”の荷物が”X（エックス）”に紛れ込むならともかく、何故か”レ”の仕分けに紛れ込んでいました・・・<br>20分朝から時間ロスしたり、何故が段ボールの一辺が裂けてたし・・・朝から酷い仕打ちでした。</p>
-<p>また評論は今回初めてでしたが、午後になってから買って行かれる方が多くなりました。<br>ここら辺はやぱり技術島と同じでスケベや創作島等を一通り巡り終わった方が来る時間帯がいらっしゃるのかな？という感じでした。<br>本の方も思っていたより捌けまして、頑張った甲斐があったなと思います。参考になれば幸いです。</p>
-<p>増刷の件ですが、もう数十部ほど刷りまして、8月末あたりにZINへ追加委託を予定しています。その際は再度こちらで告知を行いたいと思っています。</p>
-<p>冬コミですが、既に申し込みを完了しています。今のところ1970～1980年代の一眼いけいけだった頃の50mm f1.4レンズの比較本を作成しようと考えています。</p>
-<p>それでは。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2016/08/15/c90_after_and_consign/" data-id="cj0jpluaa000e6jo2hsh5blqf" class="article-share-link">Partager</a>
-      
-        <a href="https://www.tooth-pick.xyz/2016/08/15/c90_after_and_consign/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="https://www.tooth-pick.xyz/2016/09/07/last_fm_nowplayng_python_app/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -598,7 +625,7 @@ ga('send', 'pageview');
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Catégories</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Mobile/">Mobile</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mobile/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mobile/WindowsPhone/">WindowsPhone</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/カメラ/">カメラ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/サーバ/">サーバ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ソフトウェア/">ソフトウェア</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/即売会/">即売会</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/家電/">家電</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/家電/オーディオ/">オーディオ</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/家電/オーディオ/中華イヤホン/">中華イヤホン</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/雑記/">雑記</a></li></ul>
     </div>
@@ -608,9 +635,9 @@ ga('send', 'pageview');
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/K3/">K3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KZ-ED9/">KZ ED9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAGAOSI/">MAGAOSI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/サーバ/">サーバ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中華イヤホン/">中華イヤホン</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cloud9/">Cloud9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/K3/">K3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KZ-ED9/">KZ ED9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAGAOSI/">MAGAOSI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/サーバ/">サーバ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中華イヤホン/">中華イヤホン</a></li></ul>
     </div>
   </div>
 
@@ -618,9 +645,9 @@ ga('send', 'pageview');
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/K3/" style="font-size: 10px;">K3</a> <a href="/tags/KZ-ED9/" style="font-size: 10px;">KZ ED9</a> <a href="/tags/MAGAOSI/" style="font-size: 10px;">MAGAOSI</a> <a href="/tags/サーバ/" style="font-size: 10px;">サーバ</a> <a href="/tags/中華イヤホン/" style="font-size: 20px;">中華イヤホン</a>
+      <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/K3/" style="font-size: 10px;">K3</a> <a href="/tags/KZ-ED9/" style="font-size: 10px;">KZ ED9</a> <a href="/tags/MAGAOSI/" style="font-size: 10px;">MAGAOSI</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/サーバ/" style="font-size: 10px;">サーバ</a> <a href="/tags/中華イヤホン/" style="font-size: 20px;">中華イヤホン</a>
     </div>
   </div>
 
@@ -637,9 +664,13 @@ ga('send', 'pageview');
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/25/easy-cms-system-1/">dockerとgitlabを使ったお手軽CMS環境構築　その１</a>
+          </li>
         
           <li>
             <a href="/2017/03/21/buy-chinese-earphone-magaosi-k3pro/">中華イヤホンMAGAOSI K3 Proレビュー</a>
@@ -655,10 +686,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2017/02/22/nichikame_2017_3_introduce/">日本カメラ3月号にて紹介していただきました</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/01/c91_after_and_consign/">C91お疲れ様でした＆委託のお話＆今後の即売会参加予定</a>
           </li>
         
       </ul>
@@ -700,7 +727,7 @@ ga('send', 'pageview');
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 tumayouzi<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

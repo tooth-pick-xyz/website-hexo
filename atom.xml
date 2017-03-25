@@ -8,8 +8,57 @@
     <atom:link href="/atom.xml" rel="self" type="application/rss+xml"/>
     
     <description>サークル「プラスチック合金」爪楊枝のサイトです。</description>
-    <pubDate>Tue, 21 Mar 2017 15:40:18 GMT</pubDate>
+    <pubDate>Sat, 25 Mar 2017 04:51:16 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>dockerとgitlabを使ったお手軽CMS環境構築　その１</title>
+      <link>https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/</link>
+      <guid>https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/</guid>
+      <pubDate>Sat, 25 Mar 2017 04:22:04 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;&lt;img src=&quot;/img/2017/docker_hexo_gitlab.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;結構前の話ですが、ブログをおうちサーバのWordpressからConohaのVPS上にdockerを使用し、hexoを構築した環境へと移行しました。&lt;br&gt;
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p><img src="/img/2017/docker_hexo_gitlab.png" alt=""></p>
+<p>結構前の話ですが、ブログをおうちサーバのWordpressからConohaのVPS上にdockerを使用し、hexoを構築した環境へと移行しました。<br>その過程で色々とdockerの長所的な物を利用したブログ更新環境を構築したのでメモ。</p>
+<p><strong><em>本文を書いていたところかなりの長文になってしまったため、4記事くらいに分割しました。</em></strong></p>
+<h1 id="移行のきっかけ"><a href="#移行のきっかけ" class="headerlink" title="移行のきっかけ"></a>移行のきっかけ</h1><ul>
+<li>Wordpressの脆弱性対応の手間</li>
+<li>Wordpressの記事の書きにくさ</li>
+<li>自宅サーバの老朽化  </li>
+</ul>
+<p>一番大きかった要因が2つめの <strong>記事の書きにくさ</strong> でした。<br>WebUI上で書くのですが、私のPCではブラウザをフル画面表示ではなく、1280*1024程度のサイズにして使用しています。そうするとUIがかなりきつきつで書きにくいのです。<br>UIもきつきつですが、私の場合Wordpressで記事を更新するときは、画像の挿入などで記事編集のテキストモードとビジュアルモードを入ったり来たりしていたため、あまり効率的ではありませんでした。</p>
+<p>また、サーバの老朽化も進んでおり、購入から5年以上経過していました。webサイトをWpからhexoへ移行する際、サーバをVPS上へと移行しました。</p>
+<h1 id="移行時に実現したかったこと"><a href="#移行時に実現したかったこと" class="headerlink" title="移行時に実現したかったこと"></a>移行時に実現したかったこと</h1><ul>
+<li>記事をパソコン一つあれば外出先からでも更新出来る環境</li>
+<li>なるべく記事更新がシンプルにできること</li>
+<li>管理の手間を減らす</li>
+<li>IPv6環境は引き続き対応</li>
+</ul>
+<h1 id="最終目標"><a href="#最終目標" class="headerlink" title="最終目標"></a>最終目標</h1><ol>
+<li>Cloud9上から<code>hexo deploy</code>を実施しただけで、gitlab上へ公開データを転送。</li>
+<li>gitlabがpushを検知し、VPS上へwebhookを投げる</li>
+<li>VPS上のwebhookサーバがwebhookを受信し、webコンテナを再起動。再起動時に最新の公開データをgitlabからclone</li>
+<li><p>最新のweb公開データを持ったコンテナが自動起動</p>
+<p>つまり、ブログの更新ユーザはcloud9上で<code>hexo deploy</code>だけで、常にweb公開データを持ったコンテナが自動再起動される素敵環境を構築します。</p>
+</li>
+</ol>
+<h1 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h1><ul>
+<li>やりたいことは全て実現出来た</li>
+</ul>
+<h3 id="ついでに実現できちゃった事"><a href="#ついでに実現できちゃった事" class="headerlink" title="ついでに実現できちゃった事"></a>ついでに実現できちゃった事</h3><ul>
+<li>HTTPSへの対応。しかもHSTS対応まで出来てしまった。万歳🙌</li>
+<li>HTTP/2（SPDY4）への対応。⚡</li>
+</ul>
+<p>環境の構築については次の記事から記述していきます。</p>
+]]></content:encoded>
+      
+      <comments>https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>中華イヤホンMAGAOSI K3 Proレビュー</title>
