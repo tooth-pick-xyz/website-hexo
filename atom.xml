@@ -8,7 +8,7 @@
     <atom:link href="/atom.xml" rel="self" type="application/rss+xml"/>
     
     <description>サークル「プラスチック合金」爪楊枝のサイトです。</description>
-    <pubDate>Sat, 25 Mar 2017 04:51:16 GMT</pubDate>
+    <pubDate>Sat, 25 Mar 2017 04:53:36 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -19,13 +19,16 @@
       <description>
       
         &lt;p&gt;&lt;img src=&quot;/img/2017/docker_hexo_gitlab.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;結構前の話ですが、ブログをおうちサーバのWordpressからConohaのVPS上にdockerを使用し、hexoを構築した環境へと移行しました。&lt;br&gt;
+&lt;p&gt;結構前の話ですが、ブログをおうちサーバのWordpressからConohaのVPS上にdockerを使用し、hexoを構築した環境へと移行しました。&lt;br&gt;その過程で色々とdockerの長所的な物を利用したブログ更新環境を構築したのでメモ。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;本文を書いていたところかなりの長文になってしまったため、4記事くらいに分割しました。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
       
       </description>
       
       <content:encoded><![CDATA[<p><img src="/img/2017/docker_hexo_gitlab.png" alt=""></p>
 <p>結構前の話ですが、ブログをおうちサーバのWordpressからConohaのVPS上にdockerを使用し、hexoを構築した環境へと移行しました。<br>その過程で色々とdockerの長所的な物を利用したブログ更新環境を構築したのでメモ。</p>
 <p><strong><em>本文を書いていたところかなりの長文になってしまったため、4記事くらいに分割しました。</em></strong></p>
+<p><a id="more"></a>s</p>
 <h1 id="移行のきっかけ"><a href="#移行のきっかけ" class="headerlink" title="移行のきっかけ"></a>移行のきっかけ</h1><ul>
 <li>Wordpressの脆弱性対応の手間</li>
 <li>Wordpressの記事の書きにくさ</li>
