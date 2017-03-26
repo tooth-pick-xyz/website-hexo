@@ -8,7 +8,7 @@
     <atom:link href="/atom.xml" rel="self" type="application/rss+xml"/>
     
     <description>サークル「プラスチック合金」爪楊枝のサイトです。</description>
-    <pubDate>Sun, 26 Mar 2017 12:44:01 GMT</pubDate>
+    <pubDate>Sun, 26 Mar 2017 14:15:38 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -19,7 +19,13 @@
       <description>
       
         &lt;p&gt;&lt;img src=&quot;/img/2017/docker_hexo_gitlab.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;前回の記事&lt;a href=&quot;https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/&quot;&gt;docker
+&lt;p&gt;前回の記事&lt;a href=&quot;https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/&quot;&gt;dockerとgitlabを使ったお手軽CMS環境構築　その1&lt;/a&gt;の続きの記事です。&lt;br&gt;前回は構築する概要等を説明しましたが、その2からは実際のシステムの更新に入っていきたいと思います。&lt;/p&gt;
+&lt;h1 id=&quot;webフロントエンドの作成&quot;&gt;&lt;a href=&quot;#webフロントエンドの作成&quot; class=&quot;headerlink&quot; title=&quot;webフロントエンドの作成&quot;&gt;&lt;/a&gt;webフロントエンドの作成&lt;/h1&gt;&lt;p&gt;今回はwebフロントエンド用のコンテナとして、2つのコンテナを使用しました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/jwilder/nginx-proxy&quot;&gt;jwilder/nginx-proxy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion&quot;&gt;JrCs/docker-letsencrypt-nginx-proxy-companion&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;この2つのコンテナを使用することでバックエンドで構築したwebサーバをdocker.sock経由で感知し、nginx-proxyがリバースプロキシ設定を自動的に設定します。   docker-letsencrypt-nginx-proxy-companionはLet’s EncryptでのSSL証明書を自動発行、SSL通信化を自動で行えます。&lt;br&gt;立ち上げておけばいいだけなのでとっても便利ですね👏  &lt;/p&gt;
       
       </description>
       
@@ -31,6 +37,7 @@
 <li><a href="https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion" target="_blank" rel="external">JrCs/docker-letsencrypt-nginx-proxy-companion</a>  </li>
 </ul>
 <p>この2つのコンテナを使用することでバックエンドで構築したwebサーバをdocker.sock経由で感知し、nginx-proxyがリバースプロキシ設定を自動的に設定します。   docker-letsencrypt-nginx-proxy-companionはLet’s EncryptでのSSL証明書を自動発行、SSL通信化を自動で行えます。<br>立ち上げておけばいいだけなのでとっても便利ですね👏  </p>
+<a id="more"></a>
 <h3 id="docker-compose-ymlを作成"><a href="#docker-compose-ymlを作成" class="headerlink" title="docker-compose.ymlを作成"></a>docker-compose.ymlを作成</h3><p>適当な場所にディレクトリを作成、ディレクトリ内にdocker-compose.ymlを作成し、以下の様に記述します。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">nginx-proxy:</div><div class="line">  image: jwilder/nginx-proxy</div><div class="line">  privileged: true</div><div class="line">  restart: always</div><div class="line">  ports:</div><div class="line">    - 80:80</div><div class="line">    - 443:443</div><div class="line">  volumes:</div><div class="line">    - ./docker-compose.d/certs:/etc/nginx/certs:ro</div><div class="line">    - ./docker-compose.d/htpasswd:/etc/nginx/htpasswd</div><div class="line">    - /etc/nginx/vhost.d</div><div class="line">    - /usr/share/nginx/html</div><div class="line">    - /var/run/docker.sock:/tmp/docker.sock:ro</div><div class="line"></div><div class="line">letsencrypt-nginx-proxy-companion:</div><div class="line">  image: jrcs/letsencrypt-nginx-proxy-companion</div><div class="line">  privileged: true</div><div class="line">  restart: always</div><div class="line">  volumes:</div><div class="line">    - ./docker-compose.d/certs:/etc/nginx/certs:rw</div><div class="line">    - /var/run/docker.sock:/var/run/docker.sock:ro</div><div class="line">  volumes_from:</div><div class="line">    - nginx-proxy</div></pre></td></tr></table></figure>
 <p>保存後にdocker-compose.ymlを保存したディレクトリ内で <code>docker-compose run</code>を実行し、実際にエラーが起きずに実行出来たか確認します。<br>問題無い場合は<code>docker-compose run -d</code>でバックグラウンド動作する様にしましょう。<br>docker-compose.yml内で<code>restart=always</code>を指定しているので、サーバをホスト再起動後も自動でコンテナが起動されます。</p>
