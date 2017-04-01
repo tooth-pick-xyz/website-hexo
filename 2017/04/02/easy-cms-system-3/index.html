@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: K3 | tooth-pick</title>
+  <title>dockerとgitlabを使ったお手軽CMS環境構築　その3 | tooth-pick</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="サークル「プラスチック合金」爪楊枝のサイトです。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tooth-pick">
-<meta property="og:url" content="https://www.tooth-pick.xyz/tags/K3/index.html">
+  <meta name="description" content="寝過ぎて頭痛いです。もの凄く痛い。バファリン飲んだけど治る気しない。その1とその2の続きです。今回はCloud9上Hexoの更新環境を構築してから、Git上にpushするまでです。区切りが悪かったので内容が中途半端な感じ否めない。Gitlab周りの設定は今回はブログシステムを構築するという都合上、滅茶苦茶省いています。分からない場合はググってください。気が向いたら詳細に書くかも知れない。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dockerとgitlabを使ったお手軽CMS環境構築　その3">
+<meta property="og:url" content="https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/index.html">
 <meta property="og:site_name" content="tooth-pick">
-<meta property="og:description" content="サークル「プラスチック合金」爪楊枝のサイトです。">
+<meta property="og:description" content="寝過ぎて頭痛いです。もの凄く痛い。バファリン飲んだけど治る気しない。その1とその2の続きです。今回はCloud9上Hexoの更新環境を構築してから、Git上にpushするまでです。区切りが悪かったので内容が中途半端な感じ否めない。Gitlab周りの設定は今回はブログシステムを構築するという都合上、滅茶苦茶省いています。分からない場合はググってください。気が向いたら詳細に書くかも知れない。">
+<meta property="og:image" content="https://www.tooth-pick.xyz/img/2017/docker_hexo_gitlab.png">
+<meta property="og:image" content="https://www.tooth-pick.xyz/img/2017/hexo_git_project_url.png">
+<meta property="og:updated_time" content="2017-04-01T15:22:57.058Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tooth-pick">
-<meta name="twitter:description" content="サークル「プラスチック合金」爪楊枝のサイトです。">
+<meta name="twitter:title" content="dockerとgitlabを使ったお手軽CMS環境構築　その3">
+<meta name="twitter:description" content="寝過ぎて頭痛いです。もの凄く痛い。バファリン飲んだけど治る気しない。その1とその2の続きです。今回はCloud9上Hexoの更新環境を構築してから、Git上にpushするまでです。区切りが悪かったので内容が中途半端な感じ否めない。Gitlab周りの設定は今回はブログシステムを構築するという都合上、滅茶苦茶省いています。分からない場合はググってください。気が向いたら詳細に書くかも知れない。">
+<meta name="twitter:image" content="https://www.tooth-pick.xyz/img/2017/docker_hexo_gitlab.png">
 <meta name="twitter:creator" content="@tumayouzi_s">
   
     <link rel="alternate" href="/atom.xml" title="tooth-pick" type="application/atom+xml">
@@ -88,40 +92,90 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/03/21/buy-chinese-earphone-magaosi-k3pro/" class="archive-article-date">
-  <time datetime="2017-03-21T14:37:06.000Z" itemprop="datePublished">3月 21</time>
+        <section id="main"><article id="post-easy-cms-system-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/02/easy-cms-system-3/" class="article-date">
+  <time datetime="2017-04-01T15:19:19.000Z" itemprop="datePublished">2017-04-02</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/サーバ/">サーバ</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/21/buy-chinese-earphone-magaosi-k3pro/">中華イヤホンMAGAOSI K3 Proレビュー</a>
+    <h1 class="article-title" itemprop="name">
+      dockerとgitlabを使ったお手軽CMS環境構築　その3
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/2017/docker_hexo_gitlab.png" alt=""></p>
+<p>寝過ぎて頭痛いです。もの凄く痛い。バファリン飲んだけど治る気しない。<br><a href="https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/">その1</a>と<a href="https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-2/">その2</a>の続きです。<br>今回はCloud9上Hexoの更新環境を構築してから、Git上にpushするまでです。区切りが悪かったので内容が中途半端な感じ否めない。<br>Gitlab周りの設定は今回はブログシステムを構築するという都合上、滅茶苦茶省いています。分からない場合はググってください。気が向いたら詳細に書くかも知れない。</p>
+<a id="more"></a>
+<h1 id="Cloud9上でHexoをインストールする"><a href="#Cloud9上でHexoをインストールする" class="headerlink" title="Cloud9上でHexoをインストールする"></a>Cloud9上でHexoをインストールする</h1><p>Cloud9の環境が整ったところでHexoの環境を整えます。  </p>
+<h2 id="SSH-keyの作成"><a href="#SSH-keyの作成" class="headerlink" title="SSH keyの作成"></a>SSH keyの作成</h2><p> Hexoの環境を整える前にgitlabで使用するSSHキーを作成します。<br> 今回鍵方式はECDSA 521bit鍵を使用しました。</p>
+<ol>
+<li>ホスト上の<code>/change/dir/.ssh/</code>で<code>ssh-keygen -t ecdsa -b 521</code>を実行します。<br>認証用のパスワード入力を求められますので、無入力でエンターかパスワードを入力してください。<br>秘密鍵と公開鍵が生成されますので、公開鍵をgitlabに登録します。<br>gitlabの右上にあるアイコンをクリック、Settingを選択し、SSH Keysという項目があるので、こちらに公開鍵の内容を貼り付けて登録します。</li>
+<li>同じフォルダにconfigを作成します。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line">HostName gitlab.com</div><div class="line">User [yourname]</div><div class="line">IdentityFile ~/.ssh/id_ecdsa</div><div class="line">Port 22</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>以上でgitのSSHキー登録は完了です。  </p>
+<h2 id="gitlab上にプロジェクトを作成"><a href="#gitlab上にプロジェクトを作成" class="headerlink" title="gitlab上にプロジェクトを作成"></a>gitlab上にプロジェクトを作成</h2><p>Hexoのweb公開データをpushするProjectを新規作成します。<br>gitlabにログインし、New Projectをクリック、Project名を適当に入力します。<br>Visibility LevelはPublicでも問題無いです。どうせ公開する内容ですし。<br>最後にCreate projectで完了です。</p>
+<h2 id="Hexo環境の構築"><a href="#Hexo環境の構築" class="headerlink" title="Hexo環境の構築"></a>Hexo環境の構築</h2><p>続いてhexoの環境を構築します。ここからはcloud9上での作業です。<br>  hexoの初期化をし、試しに1度デプロイを実施してみます。</p>
+<ol>
+<li>cloud9上の環境で<code>hexo init [blog_name]</code>を実行します。</li>
+<li><code>cd [blog_name]</code>、<code>npm install hexo-deployer-git --save</code>を実行します。</li>
+<li>一度<code>hexo server -p 9000</code>を実行し、<a href="http://server-ip:9000" target="_blank" rel="external">http://server-ip:9000</a>　へアクセスし、正しく表示されることを確認します。  サーバはCtrl+Cで停止します。</li>
+<li><p>config.ymlにdeploy用の設定を記述します  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> # Deployment</div><div class="line"> ## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: [repository url]</div><div class="line">  branch: master</div><div class="line">  message: &quot;Updated: &#123;&#123; now(&apos;YYYY-MM-DD HH:mm:ss&apos;) &#125;&#125;&quot;</div></pre></td></tr></table></figure>
+<p><code>[repository url]</code>はgitlab上に作成したprojectからアドレスを取ってきます。<br><img src="/img/2017/hexo_git_project_url.png" alt=""></p>
+</li>
+<li><code>hexo deploy -g</code>を実行します。問題無ければgithubかgitlabへpushが行われます。web上で確認しましょう。</li>
+</ol>
+<p>以上でHexoの環境構築は完了です。<br>次回はwebバックエンドの構築、gitlabへpush後、webhook等の設定を行います。<br>次が最後かな・・・？</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/" data-id="cj0zeozk4001a3no23csffue7" class="article-share-link">Share</a>
+      
+        <a href="https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cloud9/">Cloud9</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/25/easy-cms-system-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">dockerとgitlabを使ったお手軽CMS環境構築　その2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -256,11 +310,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'tooth-pick';
   
+  var disqus_url = 'https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
