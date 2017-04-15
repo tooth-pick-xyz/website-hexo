@@ -8,8 +8,60 @@
     <atom:link href="/atom.xml" rel="self" type="application/rss+xml"/>
     
     <description>サークル「プラスチック合金」爪楊枝のサイトです。</description>
-    <pubDate>Sat, 01 Apr 2017 15:22:57 GMT</pubDate>
+    <pubDate>Sat, 15 Apr 2017 12:32:53 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>dockerとgitlabを使ったお手軽CMS環境構築　その4</title>
+      <link>https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/</link>
+      <guid>https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/</guid>
+      <pubDate>Sat, 15 Apr 2017 12:30:12 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;&lt;img src=&quot;/img/2017/docker_hexo_gitlab.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;仕事がバタバタしたり、土日に所用があって更新が遅れてしまいました。&lt;br&gt;dockerとgitlabを使ったお手軽CMS環境構築シリーズの最後です。&lt;br&gt;最後はwebバックエンドの構築～webhookサーバ～バックエンドの自動rebuild環境を構築します。&lt;br&gt;シリーズ一覧はこちら&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/&quot;&gt;その1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-2/&quot;&gt;その2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/&quot;&gt;その3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;その4　&amp;lt;-いまここ！！&lt;/li&gt;
+&lt;/ol&gt;
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p><img src="/img/2017/docker_hexo_gitlab.png" alt=""></p>
+<p>仕事がバタバタしたり、土日に所用があって更新が遅れてしまいました。<br>dockerとgitlabを使ったお手軽CMS環境構築シリーズの最後です。<br>最後はwebバックエンドの構築～webhookサーバ～バックエンドの自動rebuild環境を構築します。<br>シリーズ一覧はこちら</p>
+<ol>
+<li><a href="https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/">その1</a></li>
+<li><a href="https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-2/">その2</a></li>
+<li><a href="https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/">その3</a></li>
+<li>その4　&lt;-いまここ！！</li>
+</ol>
+<a id="more"></a>
+<h1 id="バックエンドの構築"><a href="#バックエンドの構築" class="headerlink" title="バックエンドの構築"></a>バックエンドの構築</h1><p>Hexo公開用のバックエンド用Webサーバのコンテナを作成していきます。<br>適当な場所にディレクトリを作成して、Dockerfileを作成します<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> nginx:latest</div><div class="line"><span class="keyword">MAINTAINER</span> tumayouzi &lt;tumayouzi@gmail.com&gt;</div><div class="line"></div><div class="line"><span class="keyword">RUN</span> apt-get update &amp;&amp; \</div><div class="line">    apt-get install -y git &amp;&amp; \</div><div class="line">    apt-get clean &amp;&amp; \</div><div class="line">    rm -rf /var/lib/apt/lists/*</div><div class="line"></div><div class="line"><span class="keyword">RUN</span> mkdir /data</div><div class="line"><span class="keyword">WORKDIR</span> /data</div><div class="line"></div><div class="line"><span class="keyword">ADD</span> https://www.random.org/strings/?num=16&amp;len=16&amp;digits=on&amp;upperalpha=on&amp;loweralpha=on&amp;unique=on&amp;format=plain&amp;rnd=newuuid</div><div class="line"></div><div class="line"><span class="keyword">RUN</span> git clone https://gitlab.com/tumayouzi/hexo_website.git</div><div class="line"></div><div class="line"><span class="keyword">RUN</span> rm -rf /usr/share/nginx/html &amp;&amp; \</div><div class="line">    mv /data/hexo_website /data/html &amp;&amp; \</div><div class="line">    mv /data/html/ /usr/share/nginx/</div><div class="line"></div><div class="line"><span class="keyword">WORKDIR</span> /usr/share/nginx</div></pre></td></tr></table></figure></p>
+<p><code>ADD https://www.random.org/strings/?num=16&amp;len=16&amp;digits=on&amp;upperalpha=on&amp;loweralpha=on&amp;unique=on&amp;format=plain&amp;rnd=newuuid</code>では、Dcoker runする場合、前回とフォルダの内容が同じハッシュ値である場合、rebuildする場合git cloneもキャッシュを使用してしまいます。<br>ハッシュ値が違うファイルが入った場合、それ以降の処理はキャッシュを使用しなくなるので<code>WORKDIR ~~</code>までの処理はキャッシュ、それ以降の処理は毎回キャッシュを使用しない処理となります。<br>詳しい処理については以下の記事が参考になります。<br><a href="http://kimh.github.io/blog/jp/docker/gothas-in-writing-dockerfile-jp/" target="_blank" rel="external">Dockerfileを書く時の注意とかコツとかハックとか | kim hirokuni</a></p>
+<h1 id="webhookサーバのインストール"><a href="#webhookサーバのインストール" class="headerlink" title="webhookサーバのインストール"></a>webhookサーバのインストール</h1><p>今回はwebhookサーバとして<a href="https://github.com/bketelsen/captainhook" target="_blank" rel="external">captainhook</a>を使用しました。<br>captainhookは以下の順序でインストール出来ます。</p>
+<ul>
+<li>VPSホスト上で <code>sudo apt update &amp;&amp; sudo apt install -y golang</code></li>
+<li><code>go get github.com/bketelsen/captainhook</code><br>続いて、captainhook用のconfigを書いてきます。</li>
+<li>Dockerfileと同じフォルダに適当なフォルダを作成。フォルダ内に以下のファイルを作成。<br>ファイル名は何でも大丈夫です。ここでは<code>./hook/web.json</code>としました。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line">    &quot;scripts&quot;: [</div><div class="line">        &#123;</div><div class="line">            &quot;command&quot;: &quot;../scripts/web.sh&quot;</div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    &quot;allowedNetworks&quot;: [</div><div class="line">      //ここにwebhookIP許可リストを記述</div><div class="line">    ]</div><div class="line"> &#125;</div><div class="line"> ```  </div><div class="line"> </div><div class="line"> webhookの許可IPはgitlabの場合はAzureのIPからですので、そのリストを以下から取得し、リストに入力します。かなりの行です。  </div><div class="line"> [Azureで使用されるグローバルIPアドレスの範囲を確認することはできますか？ ： Cloud Steady](http://cloudsteady.jp/faq/2061.html/)</div><div class="line"> ufwに最初はIP全て打ち込もうとしたのですが、こっちに書いた方がスマートな気がしたのでこういう形にしています。  </div><div class="line"> captainhookがtokenに対応していればIPリストでフィルタすること無いんですが・・・力業に近いです。  </div><div class="line"></div><div class="line"># docker起動用のスクリプトを作成  </div><div class="line">web.jsonから見て1階層上に./scripts/web.shを作成します。  </div><div class="line">やっていることは入らないdocker imageを消した後に、コンテナをRebuildして、古いコンテナをkillしたあとに新しいコンテナを走らせているだけです。</div><div class="line"> ``` web.sh</div><div class="line"> #!/bin/bash</div><div class="line"> echo &quot;Docker &lt;none&gt; image delete...&quot;</div><div class="line"> docker images | awk &apos;/&lt;none/&#123;print $3&#125;&apos; | xargs docker rmi</div><div class="line"></div><div class="line"> echo &quot;Docker Container Rebuild...&quot;</div><div class="line"> docker build -t website_www /change/dir/</div><div class="line"></div><div class="line"> echo &quot;Docker Container kill...&quot;</div><div class="line"> docker rm -f website</div><div class="line"></div><div class="line"> echo &quot;Docker Start...&quot;</div><div class="line"> docker run --restart=always -v /etc/localtime:/etc/localtime:ro -e VIRTUAL_HOST=your.domain -e LETSENCRYPT_HOST=your.domain -e LETSENCRYPT_EMAIL=your@email.address --name website -d -p 80 -p 443 website</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="systemctlにcaptainhookサービスを登録"><a href="#systemctlにcaptainhookサービスを登録" class="headerlink" title="systemctlにcaptainhookサービスを登録"></a>systemctlにcaptainhookサービスを登録</h1><p>systemctlに自作のサービスを登録します。<br>ファイル名は<code>/etc/systemd/system/captainhook_web.service</code>とします。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description = Restart www docker container from git wehook at captainhook.</div><div class="line"></div><div class="line">[Service]</div><div class="line">ExecStart = /usr/local/bin/captainhook -listen-addr=0.0.0.0:9000 -echo -configdir /usr/local/share/docker/web/captainhook</div><div class="line">Restart = always</div><div class="line">Type = simple</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy = multi-user.target</div></pre></td></tr></table></figure></p>
+<p>自作サービスを登録します。<br><code>sudo systemctl enable captainhook_web.service</code>の1行だけ。<br>この時点ではサービスが起動していないので、<code>sudo systemctl start captainhook_web.service</code>で起動させます。</p>
+<p>これで全ての環境が構築されました。<br>動作確認方法ですが、</p>
+<ol>
+<li>Docker単品でbuild&amp;run動作確認</li>
+<li>Service起動</li>
+<li>gitlabからpush通知テスト</li>
+</ol>
+<p>の順で行うと良いでしょう。</p>
+<h1 id="課題事項"><a href="#課題事項" class="headerlink" title="課題事項"></a>課題事項</h1><p>実は今回構築した環境ですが、少し問題があります。<br>webhookの応答ですが、gitlabからpush-&gt;paptainhookまでが応答を返すのですが、シェルスクリプトが完走するまで応答が帰りません。<br>そのため、gitlab側でタイムアウトしてしまい、pushのたびに2回程度通知が来てしまうため、再pushrebuildが行われてしまいます。今のところ回避方法が思い浮かばないので、とりあえず放置していますが・・・<br>あと、webhookの受信方法もどうにかしたいですね・・・今はIPフィルタリングしていますが、していたとしてもAzureのサーバからpushされるとそれだけでサーバに負荷を掛けてしまうことが出来ます。うーん・・・</p>
+<p>いかがでしたでしょうか。これでHexoを使用したCMSに使った楽々ブログ更新環境の完成です。<br>すこし課題事項もありますが「dockerを使用してこんなCMSシステムも構築出来ますよ」というサンプルにはなるかと思います。<br>皆さんもお試しあれ。</p>
+]]></content:encoded>
+      
+      <comments>https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>dockerとgitlabを使ったお手軽CMS環境構築　その3</title>
