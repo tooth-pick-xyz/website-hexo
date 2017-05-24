@@ -1381,3 +1381,6 @@ pre .javascript .function {
   margin-right: 5px;
   display: inline-block;
 }
+.share-button {
+  padding: 25px 0;
+}

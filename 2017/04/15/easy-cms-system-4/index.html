@@ -136,6 +136,17 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
+        <!-- 2017.05.24 twitter and hatebu share button Add -->
+        <div class="share-button">
+          <!-- twitter share button -->
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/" data-text="dockerとgitlabを使ったお手軽CMS環境構築　その4 | tooth-pick" data-lang="ja">ツイート</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <!-- twitter share button End -->
+        <!--  hatebu share button Start -->
+          <a href="http://b.hatena.ne.jp/entry/https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/" class="hatena-bookmark-button" data-hatena-bookmark-title="dockerとgitlabを使ったお手軽CMS環境構築　その4" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <!-- hatebu share button End -->
+        </div>
+        <!-- twitter and hatebu share button End -->
         <p><img src="/img/2017/docker_hexo_gitlab.png" alt=""></p>
 <p>仕事がバタバタしたり、土日に所用があって更新が遅れてしまいました。<br>dockerとgitlabを使ったお手軽CMS環境構築シリーズの最後です。<br>最後はwebバックエンドの構築～webhookサーバ～バックエンドの自動rebuild環境を構築します。<br>シリーズ一覧はこちら</p>
 <ol>
@@ -166,16 +177,28 @@ ga('send', 'pageview');
 <h1 id="課題事項"><a href="#課題事項" class="headerlink" title="課題事項"></a>課題事項</h1><p>実は今回構築した環境ですが、少し問題があります。<br>webhookの応答ですが、gitlabからpush-&gt;paptainhookまでが応答を返すのですが、シェルスクリプトが完走するまで応答が帰りません。<br>そのため、gitlab側でタイムアウトしてしまい、pushのたびに2回程度通知が来てしまうため、再pushrebuildが行われてしまいます。今のところ回避方法が思い浮かばないので、とりあえず放置していますが・・・<br>あと、webhookの受信方法もどうにかしたいですね・・・今はIPフィルタリングしていますが、していたとしてもAzureのサーバからpushされるとそれだけでサーバに負荷を掛けてしまうことが出来ます。うーん・・・</p>
 <p>いかがでしたでしょうか。これでHexoを使用したCMSに使った楽々ブログ更新環境の完成です。<br>すこし課題事項もありますが「dockerを使用してこんなCMSシステムも構築出来ますよ」というサンプルにはなるかと思います。<br>皆さんもお試しあれ。</p>
 
+                <!-- 2017.05.24 twitter and hatebu share button Add -->
+        <div class="share-button">
+          <!-- twitter share button -->
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/" data-text="dockerとgitlabを使ったお手軽CMS環境構築　その4 | tooth-pick" data-lang="ja">ツイート</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <!-- twitter share button End -->
+        <!--  hatebu share button Start -->
+          <a href="http://b.hatena.ne.jp/entry/https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/" class="hatena-bookmark-button" data-hatena-bookmark-title="dockerとgitlabを使ったお手軽CMS環境構築　その4" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <!-- hatebu share button End -->
+        </div>
+        <!-- twitter and hatebu share button End -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/" data-id="cj2op0uz700163boi8pvuaz0i" class="article-share-link">Share</a>
+      <a data-url="https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/" data-id="cj331l1b4001daaoi0305fj8o" class="article-share-link">Share</a>
       
         <a href="https://www.tooth-pick.xyz/2017/04/15/easy-cms-system-4/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cloud9/">Cloud9</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
+      
     </footer>
   </div>
   
