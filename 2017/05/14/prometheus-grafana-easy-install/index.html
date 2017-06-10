@@ -18,7 +18,7 @@ Dockerの環境も良い感じになったし、そろそろまともにちゃ�
 <meta property="og:image" content="https://www.tooth-pick.xyz/img/2017/grafana_data.png">
 <meta property="og:image" content="https://www.tooth-pick.xyz/img/2017/node.png">
 <meta property="og:image" content="https://www.tooth-pick.xyz/img/2017/docker.png">
-<meta property="og:updated_time" content="2017-05-14T12:51:35.257Z">
+<meta property="og:updated_time" content="2017-06-10T08:40:16.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="prometheusとgrafanaで良い感じにdockerコンテナとホストを監視する">
 <meta name="twitter:description" content="夏コミの原稿が行き詰まっていますが僕は元気です。  
@@ -98,6 +98,8 @@ ga('send', 'pageview');
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.tooth-pick.xyz"></form>
       </div>
+      
+      <p id="page-top"><a href="#wrap" class="article-link-top"></a></p>
     </div>
   </div>
 </header>
@@ -160,9 +162,9 @@ ga('send', 'pageview');
 <h1 id="コンテナの起動"><a href="#コンテナの起動" class="headerlink" title="コンテナの起動"></a>コンテナの起動</h1><p>prometheusのdocker-compose.ymlを保管したディレクトリ内で以下のコマンドで実行します。<br><code>sudo docker-compose up</code>  </p>
 <h2 id="prometheusの確認"><a href="#prometheusの確認" class="headerlink" title="prometheusの確認"></a>prometheusの確認</h2><p>ログがずらーっと流れてきますので、エラーがなさそうであればprometheus.prometheus.example.comにアクセスし、メニューのStatus &gt; Targetsからちゃんと指定したデータが監視出来てるか確認します。<br><img src="/img/2017/targets.png" alt="">  </p>
 <h2 id="grafnaの設定"><a href="#grafnaの設定" class="headerlink" title="grafnaの設定"></a>grafnaの設定</h2><p>prometheus.example.comへアクセスしdocker-compose.yml内で設定した<code>GF_SECURITY_ADMIN_USER</code>と<code>GF_SECURITY_ADMIN_PASSWORD</code>でログインします。<br>grafanaのDataSourceを以下の画像のように入力すればデータが取得出来るはずです。<br><img src="/img/2017/grafana_data.png" alt="grafanaのインポート設定"> </p>
-<h2 id="grafanaのDashboadのImport"><a href="#grafanaのDashboadのImport" class="headerlink" title="grafanaのDashboadのImport"></a>grafanaのDashboadのImport</h2><p>grafanaのサイトには、良い感じにグラフを出力してくれるDashboardの設定が公開されています。<br>New dashboard &gt; Importに395と22をImportすることで、dockerとNodeを良い感じに監視しやすいグラフが設定されます。<br><img src="/img/2017/node.png" alt="nodeのダッシュボード"><br><img src="/img/2017/docker.png" alt="dockerのダッシュボード"></p>
+<h2 id="grafanaのdashboadのimport"><a href="#grafanaのDashboadのImport" class="headerlink" title="grafanaのDashboadのImport"></a>grafanaのDashboadのImport</h2><p>grafanaのサイトには、良い感じにグラフを出力してくれるDashboardの設定が公開されています。<br>New dashboard &gt; Importに395と22をImportすることで、dockerとNodeを良い感じに監視しやすいグラフが設定されます。<br><img src="/img/2017/node.png" alt="nodeのダッシュボード"><br><img src="/img/2017/docker.png" alt="dockerのダッシュボード"></p>
 <p>動作が一通り確認出来たところで、コンソールからtrl+Cで一度dockerコンテナを止め、バックグランドで操作させるために<code>docker-compose -up -d</code>でバックグラウンドで動作するようにします。<br>これで全ての設定が完了です。お疲れさまでした。</p>
-<p>いかがでしたでしょうか。dokcerで監視環境を構築することで、簡単にprometheusとgrafanaで良い感じにdockerコンテナとホストを監視する環境が整いました。<br>dockerコンテナを監視するのはprometheusが流行りつつあるものの、未だにzabbixがメインじゃないかと思います。<br>私の昔のサーバではmuninで構築していましたが、今後prometheusとgrafanaが主流になると面白いですね。  </p>
+<p>いかがでしたでしょうか。dokcerで監視環境を構築することで、簡単にprometheusとgrafanaで良い感じにdockerコンテナとホストを監視する環境が整いました。<br>dockerコンテナを監視するのはprometheusが流行りつつあるものの、未だにzabbixがメインじゃないかと思います。<br>私の昔のサーバではmuninで構築していましたが、今後prometheusとgrafanaが主流になると面白いですね。</p>
 
         <!-- 2017.05.24 twitter and hatebu share button Add -->
         <div class="share-button">
@@ -178,7 +180,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2017/05/14/prometheus-grafana-easy-install/" data-id="cj3pyo9fg002c82oihy7fyhcf" class="article-share-link">Share</a>
+      <a data-url="https://www.tooth-pick.xyz/2017/05/14/prometheus-grafana-easy-install/" data-id="cj3r2io6p002fu5oio0va61y7" class="article-share-link">Share</a>
       
         <a href="https://www.tooth-pick.xyz/2017/05/14/prometheus-grafana-easy-install/#disqus_thread" class="article-comment-link">Comments</a>
       

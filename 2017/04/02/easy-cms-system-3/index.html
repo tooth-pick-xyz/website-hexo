@@ -92,6 +92,8 @@ ga('send', 'pageview');
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.tooth-pick.xyz"></form>
       </div>
+      
+      <p id="page-top"><a href="#wrap" class="article-link-top"></a></p>
     </div>
   </div>
 </header>
@@ -136,8 +138,8 @@ ga('send', 'pageview');
         <p><img src="/img/2017/docker_hexo_gitlab.png" alt=""></p>
 <p>寝過ぎて頭痛いです。もの凄く痛い。バファリン飲んだけど治る気しない。<br><a href="https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-1/">その1</a>と<a href="https://www.tooth-pick.xyz/2017/03/25/easy-cms-system-2/">その2</a>の続きです。<br>今回はCloud9上Hexoの更新環境を構築してから、Git上にpushするまでです。区切りが悪かったので内容が中途半端な感じ否めない。<br>Gitlab周りの設定は今回はブログシステムを構築するという都合上、滅茶苦茶省いています。分からない場合はググってください。気が向いたら詳細に書くかも知れない。</p>
 <a id="more"></a>
-<h1 id="Cloud9上でHexoをインストールする"><a href="#Cloud9上でHexoをインストールする" class="headerlink" title="Cloud9上でHexoをインストールする"></a>Cloud9上でHexoをインストールする</h1><p>Cloud9の環境が整ったところでHexoの環境を整えます。  </p>
-<h2 id="SSH-keyの作成"><a href="#SSH-keyの作成" class="headerlink" title="SSH keyの作成"></a>SSH keyの作成</h2><p> Hexoの環境を整える前にgitlabで使用するSSHキーを作成します。<br> 今回鍵方式はECDSA 521bit鍵を使用しました。</p>
+<h1 id="cloud9上でhexoをインストールする"><a href="#Cloud9上でHexoをインストールする" class="headerlink" title="Cloud9上でHexoをインストールする"></a>Cloud9上でHexoをインストールする</h1><p>Cloud9の環境が整ったところでHexoの環境を整えます。  </p>
+<h2 id="ssh-keyの作成"><a href="#SSH-keyの作成" class="headerlink" title="SSH keyの作成"></a>SSH keyの作成</h2><p> Hexoの環境を整える前にgitlabで使用するSSHキーを作成します。<br> 今回鍵方式はECDSA 521bit鍵を使用しました。</p>
 <ol>
 <li>ホスト上の<code>/change/dir/.ssh/</code>で<code>ssh-keygen -t ecdsa -b 521</code>を実行します。<br>認証用のパスワード入力を求められますので、無入力でエンターかパスワードを入力してください。<br>秘密鍵と公開鍵が生成されますので、公開鍵をgitlabに登録します。<br>gitlabの右上にあるアイコンをクリック、Settingを選択し、SSH Keysという項目があるので、こちらに公開鍵の内容を貼り付けて登録します。</li>
 <li>同じフォルダにconfigを作成します。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line">HostName gitlab.com</div><div class="line">User [yourname]</div><div class="line">IdentityFile ~/.ssh/id_ecdsa</div><div class="line">Port 22</div></pre></td></tr></table></figure>
@@ -145,7 +147,7 @@ ga('send', 'pageview');
 </ol>
 <p>以上でgitのSSHキー登録は完了です。  </p>
 <h2 id="gitlab上にプロジェクトを作成"><a href="#gitlab上にプロジェクトを作成" class="headerlink" title="gitlab上にプロジェクトを作成"></a>gitlab上にプロジェクトを作成</h2><p>Hexoのweb公開データをpushするProjectを新規作成します。<br>gitlabにログインし、New Projectをクリック、Project名を適当に入力します。<br>Visibility LevelはPublicでも問題無いです。どうせ公開する内容ですし。<br>最後にCreate projectで完了です。</p>
-<h2 id="Hexo環境の構築"><a href="#Hexo環境の構築" class="headerlink" title="Hexo環境の構築"></a>Hexo環境の構築</h2><p>続いてhexoの環境を構築します。ここからはcloud9上での作業です。<br>  hexoの初期化をし、試しに1度デプロイを実施してみます。</p>
+<h2 id="hexo環境の構築"><a href="#Hexo環境の構築" class="headerlink" title="Hexo環境の構築"></a>Hexo環境の構築</h2><p>続いてhexoの環境を構築します。ここからはcloud9上での作業です。<br>  hexoの初期化をし、試しに1度デプロイを実施してみます。</p>
 <ol>
 <li>cloud9上の環境で<code>hexo init [blog_name]</code>を実行します。</li>
 <li><code>cd [blog_name]</code>、<code>npm install hexo-deployer-git --save</code>を実行します。</li>
@@ -172,7 +174,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/" data-id="cj3pyo9ew001l82oieh9fd7la" class="article-share-link">Share</a>
+      <a data-url="https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/" data-id="cj3r2io5x001eu5oiupdlf74m" class="article-share-link">Share</a>
       
         <a href="https://www.tooth-pick.xyz/2017/04/02/easy-cms-system-3/#disqus_thread" class="article-comment-link">Comments</a>
       
