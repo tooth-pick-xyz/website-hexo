@@ -463,6 +463,15 @@ body {
 #nav-search-btn:before {
   content: "\f002";
 }
+#nav-twitter-btn:before {
+  content: "\f099";
+}
+#nav-mastodon-btn:before {
+  content: "\f4f6";
+}
+#nav-flickr-btn:before {
+  content: "\f16e";
+}
 #search-form-wrap {
   position: absolute;
   top: 15px;
